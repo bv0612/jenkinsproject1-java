@@ -1,0 +1,44 @@
+pipeline {
+    agent any
+
+    tools {
+        maven 'Maven-3.9'   // configure this in Jenkins
+        jdk 'JDK-17'        // configure this in Jenkins
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/your-username/simple-java-jenkins.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean compile'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+
+        stage('Package') {
+            steps {
+                sh 'mvn package'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Build Successful!'
+        }
+        failure {
+            echo 'Build Failed!'
+        }
+    }
+}
