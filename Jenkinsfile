@@ -2,17 +2,11 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven-3.9'   // configure this in Jenkins
-        jdk 'JDK-17'        // configure this in Jenkins
+        maven 'Maven-3.9'
+        jdk 'JDK-17'
     }
 
     stages {
-
-        stage('Checkout') {
-    steps {
-        git branch: 'main', url: 'https://github.com/Reshufowzi/jenkinsproject1-java.git'
-     }
-    }
 
         stage('Build') {
             steps {
